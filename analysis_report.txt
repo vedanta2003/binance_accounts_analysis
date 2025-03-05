@@ -1,0 +1,60 @@
+
+Analysis Report:
+
+1. **Objective**:
+   The objective of this analysis is to evaluate the performance of various Binance accounts over a 90-day period based on their trade history. The accounts are ranked using a weighted scoring system that incorporates key financial metrics such as ROI, PnL, Sharpe Ratio, MDD, and Win Rate.
+
+2. **Dataset Overview**:
+   - The dataset contains historical trade data for multiple Binance accounts.
+   - Each account is identified by a unique `Port_ID`.
+   - The `Trade_History` column contains detailed information about each trade, including timestamp, asset, side (BUY/SELL), price, quantity, and realized profit.
+
+3. **Data Cleaning and Preparation**:
+   - The `Trade_History` column was initially in string format and was converted to a list of dictionaries using `ast.literal_eval()` for safer parsing.
+   - Invalid entries (e.g., malformed JSON or missing data) were identified and removed from the dataset to ensure data quality.
+   - After cleaning, the dataset contained trade histories for 150 accounts.
+
+4. **Metrics Calculated**:
+   The following financial metrics were calculated for each account:
+   - **ROI (Return on Investment)**: Measures the percentage return on the total investment made by the account.
+   - **PnL (Profit and Loss)**: The total profit or loss realized by the account over the 90-day period.
+   - **Sharpe Ratio**: A risk-adjusted return metric that indicates the return per unit of risk (assuming a risk-free rate of 0).
+   - **MDD (Maximum Drawdown)**: The maximum observed loss from a peak to a trough in the account's performance.
+   - **Win Rate**: The percentage of trades that resulted in a profit.
+   - **Win Positions**: The total number of profitable trades.
+   - **Total Positions**: The total number of trades executed by the account.
+
+5. **Ranking Methodology**:
+   - Accounts were ranked based on a weighted scoring system. The weights assigned to each metric are as follows:
+     - ROI: 30%
+     - PnL: 25%
+     - Sharpe Ratio: 20%
+     - MDD: 15%
+     - Win Rate: 10%
+   - Each metric was normalized to ensure fair comparison across accounts.
+   - A composite score was calculated for each account by summing the weighted normalized scores of all metrics.
+   - Accounts were ranked in descending order of their composite scores.
+
+6. **Top 20 Accounts**:
+   - The top 20 accounts were identified based on their composite scores.
+   - These accounts demonstrated the best overall performance across all metrics.
+   - Detailed metrics for the top 20 accounts are provided in the accompanying CSV file (`top_20_accounts.csv`).
+
+7. **Key Findings**:
+   - The top-performing accounts consistently achieved high ROI and PnL while maintaining a favorable Sharpe Ratio and low MDD.
+   - Accounts with a high Win Rate and a large number of Win Positions tended to rank higher, indicating the importance of consistent profitability.
+   - Some accounts with high PnL but low Sharpe Ratio or high MDD were ranked lower due to their higher risk profiles.
+
+8. **Assumptions and Limitations**:
+   - The risk-free rate for the Sharpe Ratio calculation was assumed to be 0.
+   - The weights assigned to the metrics are subjective and can be adjusted based on specific business requirements.
+   - The analysis assumes that the dataset is complete and accurate. Any missing or invalid data was handled by dropping the corresponding rows.
+
+9. **Deliverables**:
+   - **CSV File**: `top_20_accounts.csv` contains the top 20 accounts along with their calculated metrics and composite scores.
+   - **Text File**: This report provides a detailed explanation of the methodology, findings, and assumptions.
+
+10. **Next Steps**:
+   - Further analysis could include segmenting accounts based on trading strategies or asset classes.
+   - The weights used for ranking can be fine-tuned based on additional business insights or stakeholder feedback.
+   - Incorporating additional metrics, such as volatility or turnover ratio, could provide deeper insights into account performance.
