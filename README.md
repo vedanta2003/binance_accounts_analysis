@@ -36,9 +36,9 @@ The accounts are then ranked in descending order of their composite scores.
 1. Clone the repository or download the project files.
 2. Install the required libraries:
    ```bash
-   pip install pandas numpy matplotlib
+   pip install pandas numpy matplotlib seaborn scipy ast
    ```
-3. Open the `analysis.ipynb` file in Jupyter Notebook or VS Code.
+3. Open the `main.ipynb` file in Jupyter Notebook or VS Code.
 4. Update the dataset path if needed and run all cells.
 5. The results will be saved as `top_20_accounts.csv`, with reports generated in both `.txt` and `.pdf` formats.
 
